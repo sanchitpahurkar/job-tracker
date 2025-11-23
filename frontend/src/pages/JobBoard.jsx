@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const JobBoard = () => {
 
@@ -36,10 +37,13 @@ const JobBoard = () => {
       const token = localStorage.getItem('token');
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
       await axios.delete(`http://localhost:5000/jobs/${id}`, { headers });
+      toast.success('Job deleted');
       setJobs(prev => prev.filter(item => item._id !== id));
       setData(prev => prev.filter(item => item._id !== id));
     } catch (error) {
-      console.error('Error sending delete request');
+      console.error('Error sending delete request', error);
+      const msg = error?.response?.data?.message || error.message || 'Failed to delete job';
+      toast.error(msg);
       
     }
   }

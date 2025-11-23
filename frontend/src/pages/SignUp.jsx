@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 const SignUp = () => {
 
     const initialUser = {
@@ -36,12 +37,15 @@ const SignUp = () => {
                 const { data } = await axios.post('http://localhost:5000/signup', authData);
                 console.log("User Signup successful", data);
                 if (data?.token) {
+                  toast.success('Sign up successful');
                   // context to persist token + user and set axios header
                   login({ token: data.token, user: data.user });
                   navigate('/');
                 }
         } catch (error) {
             console.error('Error submitting form', error);
+            const msg = error?.response?.data?.message || error.message || 'Sign up failed';
+            toast.error(msg);
         }
         setAuthData(initialUser);
     }

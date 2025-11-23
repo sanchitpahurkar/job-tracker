@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Form = () => {
 
@@ -31,10 +32,15 @@ const Form = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post('http://localhost:5000/jobs/create', formdata);
-            console.log('Form data successfully submitted', data);
+                const token = localStorage.getItem('token');
+                const headers = token ? { Authorization: `Bearer ${token}` } : {};
+                const { data } = await axios.post('http://localhost:5000/jobs/create', formdata, { headers });
+                console.log('Form data successfully submitted', data);
+                toast.success('Job created successfully');
         } catch (error) {
-            console.error('Error submitting form', error);
+                console.error('Error submitting form', error);
+                const msg = error?.response?.data?.message || error.message || 'Failed to create job';
+                toast.error(msg);
         }
         setFormdata(initialForm);
     }

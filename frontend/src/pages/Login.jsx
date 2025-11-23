@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const SignIn = () => {
   const initialUser = {
@@ -39,12 +40,15 @@ const SignIn = () => {
       if (data?.token) {
         // AuthContext to persist token + user and set axios header
         login({ token: data.token, user: data.user });
+        toast.success('Login successful');
         // redirect to landing page after successful login
         navigate('/');
       }
       
     } catch (error) {
       console.error("Error submitting form", error);
+      const msg = error?.response?.data?.message || error.message || 'Login failed';
+      toast.error(msg);
     }
     setAuthData(initialUser);
   };

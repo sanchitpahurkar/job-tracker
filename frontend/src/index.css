@@ -30,3 +30,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
