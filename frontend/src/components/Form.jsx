@@ -42,7 +42,7 @@ const Form = () => {
   return (
     <form 
     onSubmit={handleSubmit}
-    className='flex flex-col w-[30%]'
+    className='flex flex-col lg:w-[30%] md:w-[70%] min-h-screen'
     >
         <label className=''>Company</label>
         <input 
@@ -68,8 +68,8 @@ const Form = () => {
         className='bg-white h-10 rounded-md outline-none text-black px-2'
         />
 
-        <div className='flex flex-row justify-between mt-4'>
-            <div className='flex flex-col w-60'>
+        <div className='flex flex-row justify-between gap-x-4 mt-4'>
+            <div className='flex flex-col w-full'>
                 <label>Status</label>
                 <select name="status" value={formdata.status} onChange={handleChange} className='h-10 bg-white rounded-md text-black p-2 cursor-pointer outline-none'>
                     <option value="applied">Applied</option>
@@ -78,7 +78,7 @@ const Form = () => {
                 </select>
             </div>
 
-            <div className='flex flex-col w-60'>
+            <div className='flex flex-col w-full'>
                 <label>Date of Application</label>
                 <input type="date" name="date" value={formdata.date} onChange={handleChange} className='h-10 bg-white rounded-md text-black outline-none p-2' />
             </div>

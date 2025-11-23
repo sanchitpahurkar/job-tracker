@@ -10,7 +10,7 @@ import ProtectedRoute from './utils/ProtectedRoute'
 function App() {
 
   return (
-    <div className=' inter-regular'>
+    <div className=' inter-regular app-bg'>
       <Routes>
         <Route path='/' element={<LandingPage/>}/>
         <Route path='/jobs' element={

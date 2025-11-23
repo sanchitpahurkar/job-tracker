@@ -50,12 +50,12 @@ const SignIn = () => {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center py-20 gap-y-8'>
+    <div className='flex flex-col items-center justify-center py-20 gap-y-8 min-h-screen'>
       <div className='text-3xl font-bold'>Login Page</div>
 
       <form 
       onSubmit={handleLogin}
-      className='flex flex-col w-[20%]'
+      className='flex flex-col lg:w-[20%] '
       >
         <label className='text-lg my-1'>Email Address</label>
         <input
