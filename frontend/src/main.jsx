@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 import { ToastContainer } from 'react-toastify';
+import Footer from './components/Footer.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')).render(
       <BrowserRouter>
         <Navbar />  
         <App />
+        <Footer />
         <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       </BrowserRouter>
     </AuthProvider>
