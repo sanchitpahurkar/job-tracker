@@ -15,7 +15,7 @@ const JobBoard = () => {
       try {
         const token = localStorage.getItem('token');
         const headers = token ? { Authorization: `Bearer ${token}` } : {};
-        const response = await axios.get('http://localhost:5000/jobs', { headers });
+        const response = await axios.get('/jobs', { headers });
         const payload = Array.isArray(response.data) ? response.data : [];
         setJobs(payload);
         setData(payload);
@@ -36,7 +36,7 @@ const JobBoard = () => {
     try {
       const token = localStorage.getItem('token');
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
-      await axios.delete(`http://localhost:5000/jobs/${id}`, { headers });
+      await axios.delete(`/jobs/${id}`, { headers });
       toast.success('Job deleted');
       setJobs(prev => prev.filter(item => item._id !== id));
       setData(prev => prev.filter(item => item._id !== id));

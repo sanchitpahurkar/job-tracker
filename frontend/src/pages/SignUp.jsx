@@ -34,7 +34,7 @@ const SignUp = () => {
     const handleSignUp = async (e) => {
         e.preventDefault();
         try {
-                const { data } = await axios.post('http://localhost:5000/signup', authData);
+                const { data } = await axios.post('/signup', authData);
                 console.log("User Signup successful", data);
                 if (data?.token) {
                   toast.success('Sign up successful');

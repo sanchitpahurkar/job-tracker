@@ -34,7 +34,7 @@ const Form = () => {
         try {
                 const token = localStorage.getItem('token');
                 const headers = token ? { Authorization: `Bearer ${token}` } : {};
-                const { data } = await axios.post('http://localhost:5000/jobs/create', formdata, { headers });
+                const { data } = await axios.post('/jobs/create', formdata, { headers });
                 console.log('Form data successfully submitted', data);
                 toast.success('Job created successfully');
         } catch (error) {

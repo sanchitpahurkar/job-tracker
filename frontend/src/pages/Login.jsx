@@ -33,7 +33,7 @@ const SignIn = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/login",
+        "/login",
         authData
       );
       console.log("User Login successful", data);
