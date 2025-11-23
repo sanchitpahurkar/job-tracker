@@ -3,10 +3,21 @@ import axios from 'axios';
 
 const Form = () => {
 
+    const initialForm = {
+        company: '',
+        jobtitle: '',
+        application_link: '',
+        jobctc: '',
+        status: 'applied',
+        date: '',
+        resume: ''
+    }
+
     const [formdata, setFormdata] = useState({
         company: '',
         jobtitle: '',
         application_link: '',
+        jobctc: '',
         status: 'applied',
         date: '',
         resume: ''
@@ -25,6 +36,7 @@ const Form = () => {
         } catch (error) {
             console.error('Error submitting form', error);
         }
+        setFormdata(initialForm);
     }
 
   return (
@@ -48,6 +60,11 @@ const Form = () => {
 
         <label className='mt-4'>Job Application URL</label>
         <input type="url" name="application_link" value={formdata.application_link} onChange={handleChange}
+        className='bg-white h-10 rounded-md outline-none text-black px-2'
+        />
+
+        <label className='mt-4'>CTC</label>
+        <input type="number" name="jobctc" value={formdata.jobctc} onChange={handleChange}
         className='bg-white h-10 rounded-md outline-none text-black px-2'
         />
 

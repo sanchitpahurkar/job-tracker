@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const JobBoard = () => {
 
   const [ data, setData ] = useState([]);
-  // `jobs` holds the full set from the server; `data` is the currently-displayed (filtered) list
   const [ jobs, setJobs ] = useState([]);
   const [ activeFilter, setActiveFilter ] = useState('all');
   const [ error, setError ] = useState(null);
@@ -33,7 +32,6 @@ const JobBoard = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/jobs/${id}`);
-      // remove from both the full list and the filtered view
       setJobs(prev => prev.filter(item => item._id !== id));
       setData(prev => prev.filter(item => item._id !== id));
     } catch (error) {
@@ -42,8 +40,6 @@ const JobBoard = () => {
     }
   }
 
-  
-  // Client-side filters
   const showAll = () => { setActiveFilter('all'); setData(jobs); };
   const showApplied = () => { setActiveFilter('applied'); setData(jobs.filter(j => (j.applicationStatus || j.status) === 'applied')); };
   const showRejected = () => { setActiveFilter('rejected'); setData(jobs.filter(j => (j.applicationStatus || j.status) === 'rejected')); };
@@ -89,7 +85,8 @@ const JobBoard = () => {
             <th>Company</th>
             <th>Job Title</th>
             <th>Status</th>
-            <th>Date of Application</th>
+            <th>CTC</th>
+            <th>Application Date</th>
             <th>Job URL</th>
             <th>Resume</th>
             <th>Actions</th>
@@ -102,6 +99,7 @@ const JobBoard = () => {
               <td>{item.company}</td>
               <td>{item.jobTitle || item.jobtitle}</td>
               <td>{item.applicationStatus || item.status}</td>
+              <td>{item.jobctc || item.jobctc}</td>
               <td>{item.dateOfApplication ? new Date(item.dateOfApplication).toLocaleDateString() : ''}</td>
               <td><a href={item.applicationURL}><u>View Application</u></a></td>
               <td><a href={item.resume}><u>View Resume</u></a></td>

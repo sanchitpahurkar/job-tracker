@@ -2,6 +2,7 @@ import express from 'express';
 import connectDB from './db.js';
 import dotenv from 'dotenv';
 import jobRouter from './routes/jobRoutes.js';
+import authRouter from './routes/authRoutes.js';
 dotenv.config();
 import cors from 'cors';
 
@@ -16,6 +17,7 @@ connectDB();
 
 // routes
 app.use('/jobs', jobRouter);
+app.use('/', authRouter);
 
 const port = process.env.PORT;
 
