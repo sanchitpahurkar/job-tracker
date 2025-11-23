@@ -2,6 +2,11 @@
   "version": 2,
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/_next/static/(.*)", "dest": "/_next/static/$1" },
+    {
+      "src": "/(.*)\\.(?:js|mjs|css|png|jpg|jpeg|svg|ico|webp|avif|json|map|wasm|ttf|woff|woff2)$",
+      "dest": "/$1"
+    },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
